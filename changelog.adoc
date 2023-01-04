@@ -21,6 +21,7 @@ and this project tries to adhere to https://semver.org/spec/v2.0.0.html[Semantic
 
 * rubyExtensions configuration
 * CZ as language for downloadTemplate
+* exportEAP with EA v16 file support
 
 === changed
 * Improve confluence export performance when only ancestorIds are given
