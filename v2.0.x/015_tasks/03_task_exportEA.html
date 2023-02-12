@@ -354,11 +354,11 @@
 				<div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
 					
 
-        <a href="https://github.com/doctoolchain/doctoolchain/edit/ng/src/docs/015_tasks/03_task_exportEA.adoc"
+        <a href="https://github.com/doctoolchain/doctoolchain/edit/null/src/docs/015_tasks/03_task_exportEA.adoc"
            target="_blank"><i class="fa fa-edit fa-fw"></i> Improve this doc</a>
 
 
-        <a href="https://github.com/docToolchain/docToolchain/issues/new?title=Docs%3A+Feedback+for+%27exportEA%27&body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23page: https://github.com/doctoolchain/doctoolchain/edit/ng/src/docs/015_tasks/03_task_exportEA.adoc%0A%23branch: ng" target="_blank"><i
+        <a href="https://github.com/docToolchain/docToolchain/issues/new?title=Docs%3A+Feedback+for+%27exportEA%27&body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23page:%20https://github.com/doctoolchain/doctoolchain/edit/null/src/docs/015_tasks/03_task_exportEA.adoc%0A%23branch:%20" target="_blank"><i
                 class="fab fa-github fa-fw"></i> Create an issue</a>
 
         
@@ -611,7 +611,7 @@ This is to make sure that they can be used from environments other than windows.
 
 # Warning!
 
-**The contents of this folder	will be overwritten with each re-export!**
+**The contents of this folder will be overwritten with each re-export!**
 
 use `gradle exportEA` to re-export files
 """
@@ -972,7 +972,7 @@ use `gradle exportEA` to re-export files
       Next
 
       For Each file In path.Files
-            If fso.GetExtensionName (file.Path) = "eap" OR fso.GetExtensionName (file.Path) = "eapx" Then
+            If fso.GetExtensionName (file.Path) = "eap" OR fso.GetExtensionName (file.Path) = "eapx" OR fso.GetExtensionName (file.Path) = "qea" OR fso.GetExtensionName (file.Path) = "qeax" Then
                 WScript.echo "found "&amp;file.path
                 If (Left(file.name, 1) = "_") Then
                     WScript.echo "skipping, because it start with `_` (replication)"
@@ -1091,7 +1091,13 @@ use `gradle exportEA` to re-export files
       End If
       EAapp.Repository.CloseFile()
       ' Since EA 15.2 the Enterprise Architect background process hangs without calling Exit explicitly
-      EAapp.Repository.Exit()
+      EAapp.Repository.Exit()      
+      ' fix for EA 16.1 where Enterprise Architect background process hangs 
+      On Error Resume Next
+        EAapp.Repository.CloseFile()
+        EAapp.Repository.Exit()
+        EAapp.Repository = null
+      ' end fix EA 16.1
     End Sub
 
   Private connectionString
@@ -1299,7 +1305,7 @@ use `gradle exportEA` to re-export files
                 </div>
                 <div class="col-12 col-sm-4 text-center py-2 order-sm-2">
 
-                        <small class="text-white">built with <a href="https://doctoolchain.org">docToolchain</a> and <a href="https://jbake.org">jBake</a> <br /> theme: <a href="https://www.docsy.dev/">docsy</a></small>
+                        <script defer data-domain="doctoolchain.org" src="https://plausible.io/js/script.js"></script><small class="text-white">built with <a href="https://doctoolchain.org">docToolchain</a> and <a href="https://jbake.org">jBake</a> <br /> theme: <a href="https://www.docsy.dev/">docsy</a></small>
 
                 </div>
             </div>
